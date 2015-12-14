@@ -1,0 +1,18 @@
+#!/bin/bash
+cd $OPENSHIFT_DATA_DIR
+
+if [[ -d sbt ]]; then
+  echo "SBT installed"
+else
+  wget -O sbt.tgz https://dl.bintray.com/sbt/native-packages/sbt/0.13.9/sbt-0.13.9.tgz
+  tar zxvf sbt.tgz sbt
+  rm sbt.tgz
+fi
+
+if [[ -d jdk1.8.0_05 ]]; then
+  echo "Java8 installed"
+else
+  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u5-b13/jdk-8u5-linux-x64.tar.gz
+  tar -zxf jdk-8u5-linux-x64.tar.gz
+  rm jdk-8u5-linux-x64.tar.gz
+fi

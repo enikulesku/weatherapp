@@ -2,4 +2,9 @@
 # The logic to start up your application should be put in this
 # script. The application will work only if it binds to
 # $OPENSHIFT_DIY_IP:8080
-nohup $OPENSHIFT_REPO_DIR/diy/testrubyserver.rb $OPENSHIFT_DIY_IP $OPENSHIFT_REPO_DIR/diy |& /usr/bin/logshifter -tag diy &
+cd $OPENSHIFT_REPO_DIR
+
+export PATH=$OPENSHIFT_DATA_DIR/jdk1.8.0_05/bin:$PATH
+export JAVA_HOME="$OPENSHIFT_DATA_DIR/jdk1.8.0_05"
+
+nohup java -jar target/scala-2.11/spray-template-fat.jar $OPENSHIFT_DIY_IP $OPENSHIFT_DIY_PORT > $OPENSHIFT_DIY_DIR/server.log 2>&1 &
