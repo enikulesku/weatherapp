@@ -17,8 +17,8 @@ object Boot extends App {
 
   implicit val timeout = Timeout(10.seconds)
 
-  val interface = Option(args(0)).getOrElse("localhost")
-  val port = Option(args(1)).getOrElse("8080").toInt
+  val interface = "localhost"//Option(args(0)).getOrElse("0.0.0.0")
+  val port = 8080//Option(args(1)).getOrElse("8080").toInt
 
   IO(Http) ? Http.Bind(service, interface, port)
 }
